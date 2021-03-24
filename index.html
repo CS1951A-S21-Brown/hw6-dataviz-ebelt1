@@ -4,25 +4,248 @@
         <meta charset="utf-8">
         <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css"/>
-        <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
     </head>
 <body>
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
     </div>
-    <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
+    <div class = "buttons1">
+            <button type="button" class="btn btn-info" onclick="setData2(5)">Red</button>
+            <button type="button" class="btn btn-info" onclick="setData2(1)">Pink</button>
+            <button type="button" class="btn btn-info" onclick="setData2(4)">Orange</button>
+            <button type="button" class="btn btn-info" onclick="setData2(6)">Yellow</button>
+            <button type="button" class="btn btn-info" onclick="setData2(3)">Green</button>
+            <button type="button" class="btn btn-info" onclick="setData2(0)">Blue</button>
+            <button type="button" class="btn btn-info" onclick="setData2(2)">Purple</button>
+    </div>
+    </div>
     <div class="row">
         <div class="col-lg-6">
             <div id="graph1"></div>
+            <div class = "buttons2">
+                <button type="button" class="btn btn-info" onclick="setData1(0, ': Most Popular Genres')">Most Popular Genres</button>
+                <button type="button" class="btn btn-info" onclick="setData1(1, ': Lesser Watched Genres')">Lesser Watched Genres</button>
+            </div>
             <div id="graph2"></div><br/>
         </div>
         <div class="col-lg-6">
             <div id="graph3"></div>
         </div>
     </div>
+    <script type="text/javascript">
+    </script>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
+<!-- 
+
+Written Questions
+1. Describe how your dashboard answers the questions presented.
+
+For this assignment, I answered the questions about the Netflix data. I answered
+the question about understanding the number of titles per genre on Netflix using a bar graph.
+In the bar graph, each bar represents a different genre, and the length of the bar represents the 
+count of titles. I thought a bar graph was a good choice of representation because the bar 
+graph is great for comparing categorical data (the categories being the genres).
+I split the graph into two sections (which one can switch between using the buttons); the 
+first section is the "most popular genres" (the genres with the most titles), and the second 
+section is the "lesser watched genres" (the genres with the least titles). I split the 
+graph into two sections so that all genres could be assessed but the graph would not be 
+overcrowded. In this graph, I included a tooltip that displays the genre and number of titles
+in that genre when one hovers over the respective bar; although the graph already displays this
+information, I thought it would be helpful for the viewer to be able to see this information
+with larger text for those who cannot see as well. 
+
+I answered the question about understanding the average duration of films per year using 
+a scatter plot. In the scatter plot, each point corresponds to a year and the average duration of 
+films released in that year. I used a scatter plot because each point has two corresponding 
+quantitative values, which means the points can be plot on a cartesian coordinate system, unlike
+more categorical data. I thought plotting the points on a cartesian coordinate system
+using the scatter plot could be interesting so one could see if there is a relationship
+between time and average duration of movies. Looking at the results, I don't think
+there would be a linear relationship between time and duration of movies, but I would
+have to do a full statistical regression to be sure. In this graph, I used a tooltip that displays
+the year and average duration of movies released in that year for each point; when one
+hovers over each point, the point also changes colors and grows in radius so one can know
+what point the information corresponds to. 
+
+For the last question about the relationships between actors, I created a flow chart in which each
+of the 50 nodes is a popular actor and a link between nodes implies that the two actors have been
+in at least 1 title together. The chosen actors are the top 50 actors who have been in the most
+Netflix titles (by count of titles). A flow chart (or network graph) is a great representation
+of this data because one can easily find the links between popular actors. I used a tooltip in this
+graph that displays the actor's name when one hovers over that actor's node; when one hovers over
+a particular link, the tooltip displays the name of the two actors being linked and the number of 
+titles on Netflix the two actors have been in together. 
+
+In addition to answering all the questions, I believe my dashboard has fulfilled all the requirements.
+I have three unique graphs (a bar graph, a scatter plot, and a flow chart), I have a tooltip for each
+graph (explained above), I have two interactive elements (buttons that change the color scheme
+and buttons that change the genres in the bar plot), and I effectively use color (even given individuals
+the opportunity to change the displayed colors to ensure that one can properly see the visuals). 
+I also fulfilled one of the extra credit opportunities by incorporating a flow chart (to answer
+the third question about the relationships between popular actors). 
+
+-------------------------------------------------------------------------------------------------------
+
+2. List 3 reasons why D3 was helpful and improved your visualization.
+
+D3 had many great features, and I really enjoyed this more creative assignment. 
+
+The first reason I found D3 helpful was that regardless of what graph one builds, the general 
+format is the same. For example, whether I was building a network graph, scatter plot, or bar 
+graph, I always had the general format of:
+        svg.selectAll(SHAPE).data(DATA)
+            .enter()
+            .append(SHAPE)
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout)
+            .transition()
+            .duration(1000)
+            .attr() // attributes for fill, dimensions, and data entries
+This function would always be the main function that would add the points, bars, or nodes to
+my graph. I used this same format for all three graphs. I found the simlar format across graphs
+really helpful because I just had to fill in each component for my particular graph, and I did not
+have to learn to write new functions. I knew exactly how to add the data, incorporate the tool tip,
+change the style of the elements, and more for each graph due to this easy to use central function.
+Thus, the ability to create many graphs using the same functions and formats in D3 was really helpful.
+
+The second reason I found D3 helpful was the sheer amount of options. Every design element I wanted
+to incorporate, I could incorporate. I was never limited by styling options. I had the full ability 
+to change shapes to whatever colors I wanted, change the boarder of elements, add shadows,
+adjust the text font and size, position objects wherever I wanted, change the shape of elements, and more. 
+The amount of options to change the elements meant that I could create anything I imagined, which was really 
+exciting. I had a lot of fun playing with styling, and I am very appreciative that I had so many
+options when it came to styling.
+
+The last reason I found D3 helpful was the interaction with the graphs in real time. I found it 
+really cool that I could retreive the color of the object a viewer clicked on when I incorporated
+the tool tip. For example, in my scatter plot, when one hovers over a dot, I was able to get
+the current color of the dot (using d3.select(this)) and then make that color darker. Because I
+was able to get current colors, I had the ability to incorporate buttons that changed the colors; 
+without the ability to change colors, I would not be able to have the buttons that change colors
+AND darken the color of an object when the tooltip hovers over it (since without a fixed color, 
+I would not know what the current color was that I should darken). I know that there are even 
+more advance things I could have incorporated by having D3 have access to the information of the 
+object clicked on by the user. This relationship between D3 and the interaction with the graphs 
+in real time is super cool, and adds to the possibilities of what one can create with D3. 
+
+Overall, D3 is a great tool!
+
+-------------------------------------------------------------------------------------------------------
+
+3. List 3 reasons why D3 would not be the best tool for creating a visualization.
+
+Although D3 had many benefits, the program did have its downfalls. For example, I found it
+really challenging to incorporate more than one button/interactive element per a graph. One cannot 
+reference functions inside of functions so figuring out how to incorporate two separate buttons 
+that change the bar graph (the color buttons and the genre buttons) was challenging. In the end,
+I had to change the way I incorporated colors into the bar graph, so that I could use the color
+changing buttons to control the bar graph and have the separate genre buttons. Originally, I had an
+ombre-effect on the bar graph (the same as the ombre effect from lab); however, since this
+ombre-effect references the data, which is inaccessible from a separate function outside of the 
+main d3.csv() function, I had to change the coloring of the bar graph to a more simple solid color 
+(that does not reference the data). Only then by applying a simpler color scheme was I able to have 
+two buttons control the display of the bar graph. It would be really helpful if in D3 I was able to 
+reference the data and variables outside the main "d3.csv("./data/netflix.csv").then(function(data) 
+{..." function. In that way, I would be able to incorporate more interactive elements with greater
+ease because I would have access to all the elements defined within the d3.csv() function (which
+is all the data and main shapes). Perhaps there is an easy way to solve this issue, such as
+first defining an empty variable called data outside of the function and then re-defining it 
+within the function, but I still think that d3 should not be so reliant on defining so many things
+within one main d3.csv("./data/netflix.csv") because it does take away some of the flexibility 
+of the program.
+
+I also find the fact that D3 uses Javascript challenging. I am used to other languages, so learning
+a new language presented its challenges. For example, I would know how to spead up the finding of links
+between popular actors in Python, but I could not figure out how to implement these same functions in
+Javascript; as a result, my flow chart displaying the connections between popular actors takes longer
+to display, and the retreival of the data is not optimal time-wise. I do not know if it's just that 
+I'm not use to Javascript, but I definitely find Javascript less intuitive that Python.
+
+The last reason I find D3 challenging is the positioning. I think D3 would be much better if it positioned
+everything along a standard cartesian coordinate system; perhaps it would even be helpful to display that 
+coordinate system in the background while working on your graphs. Without this system, I was completely 
+lost with positioning and had to completely just guess and check when positioning objects, such as the tool tip.
+The placement really made no sense. For example, on my flow chart, I had to place the tooltip at 
+(d3.event.pageX - 750, d3.event.pageY - 100) to have it close to the nodes, but on my scatter plot,
+I only had to place it at (d3.event.pageX, d3.event.pageY - 100) to have it close to the dots. It makes
+no sense to me that for one tooltip I would have to translate the x-position by 750, but for the other
+tool tip I would not have to translate the x-position. Also, I had no idea how much "1" unit is relative to 
+the graph since there are no markings. If D3 had an option to display a coordinate system in the background, I 
+would have a better sense of what would happen if I translated an object by -10 or positive 50. Instead,
+I just had to guess for each object. Lastly, there should be an option to place something in the center of 
+the graph because I even foundfinding the center of the graph challenging. Maybe D3 should incorporate allignment 
+options relative to the graph. For these reasons, I found positioning graph elements very hard.
+
+Althought I experienced this challenges with D3, I think the more practice I have with this tool, the easier
+these problems will be to navigate.
+
+-------------------------------------------------------------------------------------------------------
+
+4. What kinds of users might find this dashboard accessible and who might have more difficulty? 
+What additional actions might you take to make this dashboard more accessible to all audiences?
+
+For me, making my dashboard accessible was very important. In, Amanda Miller's "A Comprehensive 
+Guide to Accessible Data Visualization," her statistic from the CDC claiming that 1 in 4 adults in the 
+United States live with a disability stood out to me. I hope to always be a good ally to people, and part
+of being a good ally is making sure everyone is included. Thus, while making my dashboard, I wanted to 
+make sure this large population of people with diabilities was included in being able to understand and
+view my graphs. One disability that affects people is color blindness (including deuteranopia, protanopia, 
+tritanopia, and achromatopsia). Due to people's different abilities to perceive and see color, I wanted
+to give users the ability to view my dashboard in their prefered color. As a result, I added 7 buttons on 
+the top of the dashboard that allow the user to change all three graphs to blue, pink, red, yellow, orange,
+green, or purple. By allowing the users to change the colors of the graphs, users can pick a color scheme
+that is most assessible to them. These color buttons are one way I attempted to make my dashboard more 
+accessible to people who experience color blindness. 
+
+Another way I tried to make my dashboard more accessible is by taking Amanda Miller's advice when she stated:
+"If you have a particularly complex data set, you can break it into smaller and simpler chunks." I wanted to 
+include data for all genres in my bar chart that displays the number of titles per genre. However, if
+I were to display all genres at once, the data would look too crowded and may be hard for someone to read who
+experiences visual impairments. Therefore, I split the genres into two sections: "Most Popular Genres" and 
+"Lesser Watched Genres." Users can use a button to switch between displaying the most popular genres and
+lesser watched genres; thus, only half the data is displayed at once. By minimizing the amount of information
+displayed and splitting a lot of information in half, my graph becomes more readable and accessible to those
+with visual impairments. 
+
+Although I tried to make my dashboard as accessible as possible, I know that some users might still have more
+difficulty viewing it. For example, in Amanda Miller's article, Miller states that one should avoid complex 
+tooling that assistive technology, such as screen readers that can describe graphs to people who are blind, cannot
+access. In particular, Miller suggests avoiding hover overlays (i.e. tool tips). Unfortunately, incorporating
+hover overlays was a requirement for all three graphs and incorporating one interactive element, such as a button, was
+a requirement for the dashboard. Therefore, by design my dashboard cannot be accessible to all. With that being said,
+if I were to design a dashboard for many users (and not just as a school assignment), I now know to avoid these complex
+tools.
+
+-------------------------------------------------------------------------------------------------------
+
+5. Reflect on the stages of your design and implementation process when you could have taken steps to make your dashboard 
+more accessible to all audiences. What are some factors that kept you from taking these steps?
+In the articles, the authors described some ways in which one can make graphs more accessible to blind users.
+For example, in Doug Scheper's article "Why Accessibility Is at the Heart of Data Visualization," Doug Scheper explains that 
+sonification, "the representation of data as nonverbal sounds, like a Geiger counter or EKG," is a helpful tool for people
+who are blind to read graphs. I did not incorporate this tool because I do not know how, but I would love to learn
+in the future to make my graphs more accessible and because the connection between math and sound is super interesting.
+
+For another example, in Amanda Miller's article "A Comprehensive Guide to Accessible Data Visualization," Amanda Miller suggests
+that including text summaries in "real, human words" for each graph can help assistive technology, such as screen readers,
+better describe the data to users who are blind. I tried to incorporate these summaries into the dashboard, but I found
+that they made the dashboard look kind of messy; as someone with ADHD, I know what it feels like to try to navigate information
+when the information feels cluttered and all over the place. Thus, I decided to remove the summaries for each graph in 
+order to help make the graph accessible to people with attention disorders, such as myself. With that being said, Miller did
+state that there are ways for text to be "discoverable only by assistive technology." Currently, I do not know how to make this
+text discoverable only be assistive technologies, but in the future I would love to learn so that I could include summaries
+for people who are blind but mitigate clutter for people with ADHD. This example, however, illustrates how challenging it can
+be to make a dashboard accessible to all since some solutions might create problems for others. As a result, including options
+for people to view information in the way that best suits them is really important so that everyone can find their unique solution. 
+
+
+ -->

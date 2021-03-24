@@ -1,6 +1,16 @@
+button:focus {
+    outline: 0 !important;
+}
+svg {
+    display: block;
+    margin: 0 auto;
+    font: 10px sans-serif;
+}
 .header {
     padding-bottom: 20px;
     margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .header > h3, h5 {
@@ -8,5 +18,25 @@
     padding-top: 20px;
     text-align: center;
 }
+.tooltip {
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    width:  auto;
+    height: auto;
+}
+.buttons1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/* Include any custom CSS styling here! */
